@@ -1,0 +1,26 @@
+.insight {
+     
+      background-color: #252526;
+      color: #d0d0d0;
+    
+      .popper__arrow {
+             display: none !important;
+      }
+
+      .popper__arrow::after{
+            display: none;
+      }
+
+
+      
+}
+.insight.el-dropdown-menu{
+    border: 1px solid #1F1F1F;
+    border-radius: 2px;
+    box-shadow: 0 3px 12px 0 #1F1F1F;
+
+}
+
+ul.insight{
+      transform:translate(26px, -12px);
+}

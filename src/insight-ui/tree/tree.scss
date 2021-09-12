@@ -1,0 +1,90 @@
+.ztree {
+
+  .curSelectedNode {
+     background-color: #094771 !important;
+     z-index: -1;
+    .node_name {
+      color: #fff !important;
+      background-color: #094771 !important;
+    }
+
+  }
+
+  font-size: 12px !important;
+
+  li {
+    a {
+      color: #d0d0d0 !important;
+      width: 100%;
+    }
+
+    a:hover {
+      background-color: #2a2d2e;
+      text-decoration: underline;
+    }
+
+    span.button.insight-system_ico_docu,
+    span.button.insight-system_ico_open,
+    span.button.insight-system_ico_close {
+      background: url("icon/insight/tree/system.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.insight-normal_ico_docu,
+    span.button.insight-normal_ico_open,
+    span.button.insight-normal_ico_close {
+      background: url("icon/insight/tree/normal.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.insight-file_ico_docu,
+    span.button.insight-file_ico_open,
+    span.button.insight-file_ico_close {
+      background: url("icon/insight/tree/file.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.i-folder_ico_docu,
+    span.button.i-folder_ico_open,
+    span.button.i-folder_ico_close {
+      background: url("icon/insight/tree/file.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.i-yaml_ico_docu,
+    span.button.i-yaml_ico_open,
+    span.button.i-yaml_ico_close {
+      background: url("icon/insight/tree/yaml.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.i-sql_ico_docu,
+    span.button.i-sql_ico_open,
+    span.button.i-sql_ico_close {
+      background: url("icon/insight/tree/sql.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+
+    span.button.i-json_ico_docu,
+    span.button.i-json_ico_open,
+    span.button.i-json_ico_close {
+      background: url("icon/insight/tree/json.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.insight-other_ico_docu,
+    span.button.insight-other_ico_open,
+    span.button.insight-other_ico_close {
+      background: url("icon/insight/tree/other.png") no-repeat center center;
+      vertical-align: top;
+    }
+
+    span.button.insight-service_ico_docu,
+    span.button.insight-service_ico_open,
+    span.button.insight-service_ico_close {
+      background: url("icon/insight/tree/service.png") no-repeat center center;
+      vertical-align: top;
+    }
+  }
+}

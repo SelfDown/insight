@@ -1,0 +1,59 @@
+.v-jdesign,
+.v-jdesign-modal {
+  @import 'normalize.scss';
+  @import 'bootstrap/scss/bootstrap.scss';
+
+  font-size: 1rem;
+}
+
+.v-jdesign {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  text-align: left;
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .svg-icon {
+    width: 1rem;
+    height: 1rem;
+    color: inherit;
+    vertical-align: -0.15rem;
+
+    &.svg-fill {
+      fill: currentColor;
+      stroke: none;
+    }
+  }
+
+  .svg-external-icon {
+    background-color: currentColor;
+    mask-size: cover !important;
+    display: inline-block;
+  }
+}
+
+.v-jdesign-modal {
+  .svg-icon {
+    width: 1rem;
+    height: 1rem;
+    color: inherit;
+    vertical-align: -0.15rem;
+
+    &.svg-fill {
+      fill: currentColor;
+      stroke: none;
+    }
+  }
+
+  .svg-external-icon {
+    background-color: currentColor;
+    mask-size: cover !important;
+    display: inline-block;
+  }
+}

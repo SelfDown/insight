@@ -1,0 +1,28 @@
+.el-input__inner {
+  background: #3C3F41;
+  border: 1px solid #5C5D5D;
+  border-radius: 2px;
+  color: #a9a9a9;
+}
+
+.el-input__inner:focus{
+  border: 1px solid #007ACC;
+}
+
+.el-input--mini .el-input__inner {
+    height: 26px;
+    line-height: 26px;
+}
+
+.el-input-group__append, .el-input-group__prepend {
+  padding: 0 0px;
+}
+
+.el-input-group__append:hover, .el-input-group__prepend:hover {
+  background: #d5e1f2 ;
+}
+
+
+.el-input-group__append:active, .el-input-group__prepend:active {
+  background: #a2bce2 ;
+}

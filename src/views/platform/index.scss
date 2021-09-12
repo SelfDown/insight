@@ -1,0 +1,32 @@
+.container-home {
+      height: 100%;
+      overflow: hidden;
+      .content-header {
+            height: 30px;
+            line-height: 30px;
+            background-color: #3c3c3c;
+            .logo {
+                  padding-left: 10px;
+                  padding-right: 10px;
+            }
+      }
+      .content-body {
+            height: 100%;
+            background-color: #0c1021;
+            display: flex;
+            // color: whitesmoke;
+            // font-size: 13px;
+            // margin-bottom: -52px;
+            // padding-bottom: 52px;
+      }
+
+      .content-foot {
+            height: 22px;
+            line-height: 22px;
+            background-color: #007acc;
+            padding-left: 10px;
+            .button-split {
+                  margin-right: 4px;
+            }
+      }
+}

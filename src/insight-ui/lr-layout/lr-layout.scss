@@ -1,0 +1,112 @@
+.column {
+      overflow: hidden;
+      height: 100%;
+
+      .left-pannel-close{
+            width: 0 !important;
+      }
+
+      .column-left {
+            height: 100%;
+            background-color: #252526;
+            position: relative;
+            float: left;
+            color:#efefef;
+
+
+            .btn-toggle {
+                  position: absolute;
+                  width: 12px;
+                  height: 34px;
+                  right: -10px;
+  
+                  background-color: #4f4f4fdd;
+                  top: 0%;
+                  transform: translateY(0%);
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  border-top: 1px solid #565656;
+                  border-right: 1px solid #565656;
+                  border-bottom: 1px solid #565656;
+                  border-left: none;
+                  box-shadow: 1px 0 5px #4f4f4fdd;
+                  background-position: center;
+                  background-size: 70%;
+                  background-repeat: no-repeat;
+                  outline: none;
+                  cursor: pointer;
+                  z-index: 1
+                }
+            .btn-toggle.close {
+            background-image: url("../image/arrow-close.png");
+            }
+            .btn-toggle.open {
+            background-image: url("../image/arrow-open.png");
+            }
+            
+
+
+            
+            .resize-save {
+                  position: absolute;
+                  top: 0;
+                  right: 3px;
+                  bottom: 0;
+                  left: 0;
+                  padding: 0px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow:ellipsis;
+
+
+                
+                 
+                  
+                  
+            }
+
+            .resize-bar {
+                  width: 200px;
+                  height: inherit;
+                  resize: horizontal;
+                  cursor: ew-resize;
+                  opacity: 0;
+                  overflow: scroll;
+                  max-width: 1000px;
+                  min-width: 140px;
+            }
+
+            /* 拖拽线 */
+            .resize-line {
+                  position: absolute;
+                  right: 0;
+                  top: 0;
+                  bottom: 0;
+                  border-right: 1px solid #252526;
+                  border-left: 1px solid #252526;
+                  pointer-events: none;
+            }
+
+            .resize-bar:hover~.resize-line,
+            .resize-bar:active~.resize-line {
+                  z-index: 10;
+                  border-left: 5px solid #007ACC;
+            }
+
+            .resize-bar::-webkit-scrollbar {
+                  // width: 200px;
+                  height: inherit;
+            }
+        }
+      
+        .column-right {
+            height: 100%;
+            /*padding: 16px;*/
+            background-color: #1E1E1E;
+            /*box-sizing: border-box;*/
+            overflow: hidden;
+            color: #efefef;
+        }
+}
+
+  

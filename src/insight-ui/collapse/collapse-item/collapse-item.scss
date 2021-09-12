@@ -1,0 +1,32 @@
+.insight {
+    
+    .el-collapse-item__header {
+        height: 22px;
+        line-height: 22px;
+        background-color: #ffffff00;
+        color: #d0d0d0;
+        border-bottom: none;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .el-collapse-item__wrap {
+        will-change: height;
+        background-color: #FFFfff00 !important;
+        overflow: hidden;
+        box-sizing: border-box;
+        border-bottom: none;
+        color: #d0d0d0;
+       
+    }
+
+
+    .el-collapse-item__content {
+        padding-bottom: 25px;
+        padding-left: 8px;
+        font-size: 0.8rem;
+        color: #d0d0d0;
+       
+       
+    }
+}

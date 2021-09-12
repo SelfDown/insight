@@ -1,0 +1,52 @@
+html,
+body {
+  font-size: 14px;
+}
+
+$bgColor:var(--bgColor,rgb(255,255,255));
+$fontColor:var(--fontColor,rgb(0,0,0));
+$panelColor:var(--panelColor,rgb(0,0,0));
+$inputColor:var(--inputColor,rgb(0,0,0));
+
+.platform {
+
+    .router-tab {
+        .router-tab-item{
+            line-height: 26px !important;
+
+            .tab-close {
+                top: 3px !important;
+            }
+        }
+
+    .router-tab-header {
+            border-bottom: 0px;
+            background: #f0f0f0;
+            height: 26px;
+          }
+        
+      }
+
+      > .header {
+        border-bottom: 1px solid #dcdfe6;
+        line-height: 41px;
+        text-align: right;
+      }
+    
+      > .design {
+        padding: 0;
+      }
+    
+      .el-menu--horizontal {
+        > .el-menu-item {
+          height: 42px;
+          line-height: 42px;
+        }
+      }
+  
+
+  
+  
+  
+
+}

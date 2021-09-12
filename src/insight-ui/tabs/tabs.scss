@@ -1,0 +1,39 @@
+.el-tabs__nav-wrap {
+  margin-left: 10px;
+}
+
+.el-tabs__header {
+  margin: 0px 0 0px;
+}
+
+.el-tabs--card>.el-tabs__header {
+    border-bottom: none;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__nav {
+    border: 1px solid #444647;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0; 
+    box-sizing: border-box;
+}
+
+.el-tabs--card>.el-tabs__header .el-tabs__item {
+  border-bottom: 1px solid #444647;
+  border-left: 1px solid #444647;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
+    border-bottom: none;
+}
+
+.el-tabs__item.is-active {
+    color: #a0a0a0;
+}
+
+
+.el-tabs__item {
+
+  height: 28px !important;
+  line-height: 28px !important;
+
+}
+

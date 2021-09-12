@@ -1,0 +1,17 @@
+.el-dropdown-menu__item {
+      color: #d0d0d0;
+}
+.el-dropdown-menu__item:hover {
+      background-color: #094771;
+      color: #efefef;
+}
+
+.el-dropdown-menu__item.el-dropdown-menu__item--divided {
+      border-top: none;
+}
+
+.el-dropdown-menu__item.el-dropdown-menu__item--divided:before {
+      height: 1px;
+      margin: 0 -10px;
+      background-color: #444444;
+}
