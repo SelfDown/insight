@@ -15,6 +15,7 @@ import IDialog from './dialog'
 import IInput from './input'
 import ITabs from "./tabs"
 import ITabPane from "./tabs/tab-pane"
+import ITabsGroup from "./tabs-group"
 
 const components = {
   ITree,
@@ -33,7 +34,8 @@ const components = {
   IDialog,
   IInput,
   ITabs,
-  ITabPane
+  ITabPane,
+  ITabsGroup
 
 }
 
@@ -54,7 +56,8 @@ export {
   IDialog,
   IInput,
   ITabs,
-  ITabPane
+  ITabPane,
+  ITabsGroup
 
 }
 export default {

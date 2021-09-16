@@ -15,7 +15,8 @@ import {
   IDialog,
   IInput,
   ITabs,
-  ITabPane
+  ITabPane,
+  ITabsGroup
 
 } from '@/insight-ui'
 import * as API from "@/api/index.js"
@@ -39,14 +40,15 @@ export default {
     IDialog,
     IInput,
     ITabs,
-    ITabPane
+    ITabPane,
+    ITabsGroup
 
   },
 
   props: {},
   data() {
     return {
-      fileName:"first",
+
       content: "",
       flow_show: false,
       flow_title: "查看流程",
@@ -208,77 +210,109 @@ export default {
       file_path: "service_router.yml",
       show_type: "file",
       loading_background: "rgba(0, 0, 0, 0.8)",
-      flow_loading:false,
-      nodes: [
-        // {
-        //   'id': 'n1',
-        //   'width': 100,
-        //   'height': 80,
-        //   'coordinate': [-600, -200],
-        //   'meta': {
-        //     'prop': 'start',
-        //     'name': '开始'
-        //   }
-        // },
-        // {
-        //   'id': 'n2',
-        //   'width': 100,
-        //   'height': 80,
-        //   'coordinate': [-300, -200],
-        //   'meta': {
-        //     'prop': 'approval',
-        //     'name': '重启',
-        //     'desc': ""
-        //   }
-        // },
-        //
-        // {
-        //   'id': 'n3',
-        //   'width': 100,
-        //   'height': 80,
-        //   'coordinate': [0, -200],
-        //   'meta': {
-        //     'prop': 'end',
-        //     'name': '结束',
-        //
-        //
-        //   }
-        // },
-
-      ],
-      target:"server.install_monitor",
-      links: [
-        // {
-        //   'id': 'link1',
-        //   'startId': 'n1',
-        //   'endId': 'n2',
-        //   'startAt': [100, 40],
-        //   'endAt': [0, 40],
-        //   'meta': {
-        //     desc: "next"
-        //   }
-        // },
-        // {
-        //   'id': 'link2',
-        //   'startId': 'n2',
-        //   'endId': 'n3',
-        //   'startAt': [100, 40],
-        //   'endAt': [0, 40],
-        //   'meta': {
-        //     desc: "next"
-        //   }
-        // },
-        // {
-        //   'id': 'link3',
-        //   'startId': 'n2',
-        //   'endId': 'n3',
-        //   'startAt': [50, 80],
-        //   'endAt': [50, 80],
-        //   'meta': {
-        //     desc: "fail"
-        //   }
-        // }
-      ],
+      flow_loading: false,
+      nodes: [],
+      target: "server.install_monitor",
+      links: [],
+      fileName: "first",
+      files: [
+        {
+          "icon": "#i-SQL1",
+          "name": "first",
+          "label": "我的行程",
+          "content": "我的行程"
+        },
+        {
+          "icon": "#i-json",
+          "name": "second",
+          "label": "配置管理",
+          "content": "配置管理"
+        },
+        {
+          "icon": "#i-yaml",
+          "name": "third",
+          "label": "角色管理",
+          "content": "角色管理"
+        },
+        {
+          "icon": "#i-standardchartered",
+          "name": "fourth",
+          "label": "定时任务补偿",
+          "content": "定时任务补偿"
+        },
+        {
+          "icon": "#i-SQL1",
+          "name": "first",
+          "label": "我的行程",
+          "content": "我的行程"
+        },
+        {
+          "icon": "#i-json",
+          "name": "second",
+          "label": "配置管理",
+          "content": "配置管理"
+        },
+        {
+          "icon": "#i-yaml",
+          "name": "third",
+          "label": "角色管理",
+          "content": "角色管理"
+        },
+        {
+          "icon": "#i-standardchartered",
+          "name": "fourth",
+          "label": "定时任务补偿",
+          "content": "定时任务补偿"
+        },
+        {
+          "icon": "#i-SQL1",
+          "name": "first",
+          "label": "我的行程",
+          "content": "我的行程"
+        },
+        {
+          "icon": "#i-json",
+          "name": "second",
+          "label": "配置管理",
+          "content": "配置管理"
+        },
+        {
+          "icon": "#i-yaml",
+          "name": "third",
+          "label": "角色管理",
+          "content": "角色管理"
+        },
+        {
+          "icon": "#i-standardchartered",
+          "name": "fourth",
+          "label": "定时任务补偿",
+          "content": "定时任务补偿"
+        },
+        {
+          "icon": "#i-SQL1",
+          "name": "first",
+          "label": "我的行程",
+          "content": "我的行程"
+        },
+        {
+          "icon": "#i-json",
+          "name": "second",
+          "label": "配置管理",
+          "content": "配置管理"
+        },
+        {
+          "icon": "#i-yaml",
+          "name": "third",
+          "label": "角色管理",
+          "content": "角色管理"
+        },
+        {
+          "icon": "#i-standardchartered",
+          "name": "fourth",
+          "label": "定时任务补偿",
+          "content": "定时任务补偿"
+        },
+      ]
 
     }
   },
@@ -297,23 +331,24 @@ export default {
   },
 
   methods: {
-    open_flow(){
-      this.flow_show=true
+    open_flow() {
+      this.flow_show = true
       this.get_flow_data()
     },
 
     async get_flow_data() {
       this.flow_loading = true
-      let response = await API.TEMPLATE({"service": "config.flow_nodes",
+      let response = await API.TEMPLATE({
+        "service": "config.flow_nodes",
         // "target":"monitor.oracle_delay_monitor_create",
-        "target":this.target,
+        "target": this.target,
       })
       this.flow_loading = false
       let data = response.data
       if (data.success) {
 
         this.nodes = data.data.nodes
-        this.links=data.data.links
+        this.links = data.data.links
       }
     },
     get_editor_type() {
@@ -350,22 +385,39 @@ export default {
       this.file_path = names.join("/")
 
       this.show_type = "file"
+      this.add_editor_file(node["name"], this.file_path)
 
-      this.get_file_content()
 
     },
-    async get_file_content() {
+    async add_editor_file(file_name, path) {
+      // 如果已经存在打开文件，就选中，否则请求服务器
+      if (this.$refs.file_group.has_file(path)) {
+        this.$refs.file_group.set_active_path(path)
+      } else {
+        let content = await this.get_file_content(path)
+        let file = {
+          filename: file_name,
+          path: path,
+          content: content,
+          tag: "file"
+        }
+        this.$refs.file_group.add_file(file)
+      }
+
+
+    },
+    async get_file_content(path) {
 
       this.file_content_loading = true
       let response = await API.TEMPLATE({
         "service": "config.service_content",
-        "path": this.file_path
+        "path": path
       })
       this.file_content_loading = false
       let data = response.data
       if (data.success) {
-        this.file_options["language"] = this.get_editor_type()
-        this.file_content = data.data
+        // this.file_options["language"] = this.get_editor_type()
+        return data.data
       }
 
     },

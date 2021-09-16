@@ -1,0 +1,40 @@
+.dark-theme.splitpanes--vertical > .splitpanes__splitter, .dark-theme .splitpanes--vertical > .splitpanes__splitter {
+  width: 1.4px;
+  background: #444444;
+
+}
+
+.dark-theme.splitpanes--vertical > .splitpanes__splitter:hover, .dark-theme .splitpanes--vertical > .splitpanes__splitter:hover {
+
+  background: #007ACC;
+
+}
+
+.dark-theme.splitpanes--vertical > .splitpanes__splitter:before,
+.dark-theme.splitpanes--vertical > .splitpanes__splitter:after,
+.dark-theme .splitpanes--vertical > .splitpanes__splitter:before,
+.dark-theme .splitpanes--vertical > .splitpanes__splitter:after {
+    width: 1.4px;
+    height: 100%;
+    z-index: 100;
+}
+
+
+.dark-theme.splitpanes--vertical > .splitpanes__splitter:hover:before,
+.dark-theme.splitpanes--vertical > .splitpanes__splitter:hover:after,
+.dark-theme .splitpanes--vertical > .splitpanes__splitter:hover:before,
+.dark-theme .splitpanes--vertical > .splitpanes__splitter:hover:after {
+    width: 5px;
+    margin-left: -2.5px;
+    height: 100%;
+    z-index: 100;
+   background-color:  #007ACC;
+}
+
+.splitpanes.dark-theme .splitpanes__splitter:after {
+    content: "";
+    position: absolute;
+}
+.name{
+  color: #d5e1f2;
+}

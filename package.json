@@ -50,6 +50,7 @@
     "normalize.scss": "^0.1.0",
     "omnis-vue-router-tab": "^0.2.10",
     "pl-table": "^2.7.5",
+    "splitpanes": "^2.3.8",
     "vjform": "^2.5.2",
     "vue": "^2.6.12",
     "vue-giant-tree": "^0.1.5",

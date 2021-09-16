@@ -48,8 +48,9 @@
                       接口模板管理
                     </template>
 
-<!--                    <i-tree :setting="setting" :nodes="treeDatas"/>-->
-                    <i-tree :element-loading-background="loading_background"  v-loading="dir_loading" :setting="dir_setting" :nodes="dir_nodes"/>
+                    <!--                    <i-tree :setting="setting" :nodes="treeDatas"/>-->
+                    <i-tree :element-loading-background="loading_background" v-loading="dir_loading"
+                            :setting="dir_setting" :nodes="dir_nodes"/>
                   </i-collapse-item>
                 </i-collapse>
 
@@ -60,54 +61,63 @@
                       服务管理
                     </template>
 
-                    <i-tree :element-loading-background="loading_background" v-loading="service_loading" :setting="service_setting" :nodes="service_nodes"/>
+                    <i-tree :element-loading-background="loading_background" v-loading="service_loading"
+                            :setting="service_setting" :nodes="service_nodes"/>
                   </i-collapse-item>
                 </i-collapse>
               </el-row>
             </el-row>
           </template>
           <template slot="right">
+            <i-tabs-group ref="file_group">
 
-            <i-tabs  v-model="fileName" type="card" >
-              <i-tab-pane label="用户管理" name="first">用户管理</i-tab-pane>
-              <i-tab-pane label="配置管理" name="second">配置管理</i-tab-pane>
-              <i-tab-pane label="角色管理" name="third">角色管理</i-tab-pane>
-              <i-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</i-tab-pane>
-            </i-tabs>
+            </i-tabs-group>
 
+<!--            <i-tabs v-model="fileName"-->
+<!--                    closable-->
+<!--                    type="card">-->
+<!--              <i-tab-pane v-for="item,index in files" :key="index" :label="item.label+'_'+index" :name="item.name+'_'+index">-->
+<!--                <span slot="label">-->
+<!--                   <i-icon y="6px" :icon="item.icon" size="mini"/>-->
+<!--                  {{item.content}}-->
+<!--                </span>-->
+<!--                {{item.content}}-->
+<!--              </i-tab-pane>-->
 
-
-<!--            <el-row style="height:34px;padding-left:14px;line-height: 34px">-->
-<!--              <i-input style="width: 300px" v-model="target"></i-input>-->
-<!--              <i-button @click="open_flow">查看流程</i-button>-->
-
-<!--            </el-row>-->
-<!--            <el-row>-->
-
-<!--              <i-monaco-->
-
-<!--                :options="file_options"-->
-<!--                :value="file_content"-->
-<!--                :style="codeStyle"-->
-<!--              >-->
-
-<!--              </i-monaco>-->
-<!--               <i-dialog-->
-<!--                 right-open-width="88%"-->
-<!--                 :visible.sync="flow_show" :title="flow_title">-->
-<!--                <template slot="body">-->
-<!--                 <i-flow-->
-<!--                   v-loading="flow_loading"-->
-<!--                  :nodes="nodes"-->
-<!--                  :links="links"-->
-<!--                 >-->
-
-<!--                 </i-flow>-->
-<!--                </template>-->
-<!--               </i-dialog>-->
+<!--            </i-tabs>-->
 
 
-<!--            </el-row>-->
+<!--                              <el-row>-->
+
+<!--                          <i-monaco-->
+
+<!--                            :options="file_options"-->
+<!--                            :value="file_content"-->
+<!--                            :style="codeStyle"-->
+<!--                          >-->
+
+<!--                          </i-monaco>-->
+<!--                           <i-dialog-->
+<!--                             right-open-width="88%"-->
+<!--                             :visible.sync="flow_show" :title="flow_title">-->
+<!--                            <template slot="body">-->
+<!--                             <i-flow-->
+<!--                               v-loading="flow_loading"-->
+<!--                              :nodes="nodes"-->
+<!--                              :links="links"-->
+<!--                             >-->
+
+<!--                             </i-flow>-->
+<!--                            </template>-->
+<!--                           </i-dialog>-->
+
+
+<!--                        </el-row>      <el-row style="height:34px;padding-left:14px;line-height: 34px">-->
+<!--                          <i-input style="width: 300px" v-model="target"></i-input>-->
+<!--                          <i-button @click="open_flow">查看流程</i-button>-->
+
+<!--                        </el-row>-->
+<!--            -->
           </template>
         </lr-layout>
       </el-row>

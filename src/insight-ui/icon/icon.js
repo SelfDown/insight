@@ -3,7 +3,7 @@ export default {
     y: {
       type: String,
       default(){
-        
+
         return '0px'
       }
     },
@@ -17,6 +17,7 @@ export default {
     size: {
       type: String,
       default() {
+
         return null
       }
     },
