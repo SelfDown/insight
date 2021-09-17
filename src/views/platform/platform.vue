@@ -47,10 +47,11 @@
                       <i-icon icon="#i-Standard-1" size="mini"></i-icon>
                       接口模板管理
                     </template>
-
-                    <!--                    <i-tree :setting="setting" :nodes="treeDatas"/>-->
-                    <i-tree :element-loading-background="loading_background" v-loading="dir_loading"
-                            :setting="dir_setting" :nodes="dir_nodes"/>
+                    <i-tree
+                      :ref="file_tree_ref"
+                      :element-loading-background="loading_background"
+                      v-loading="dir_loading"
+                      :setting="dir_setting" :nodes="dir_nodes"/>
                   </i-collapse-item>
                 </i-collapse>
 
@@ -61,15 +62,20 @@
                       服务管理
                     </template>
 
-                    <i-tree :element-loading-background="loading_background" v-loading="service_loading"
-                            :setting="service_setting" :nodes="service_nodes"/>
+                    <i-tree
+                      :ref="service_tree_ref"
+                      :element-loading-background="loading_background"
+                      v-loading="service_loading"
+                      :setting="service_setting" :nodes="service_nodes"/>
                   </i-collapse-item>
                 </i-collapse>
               </el-row>
             </el-row>
           </template>
           <template slot="right">
-            <i-tabs-group ref="file_group">
+            <i-tabs-group
+              @tabClick="tabClick"
+              ref="file_group">
 
             </i-tabs-group>
 
@@ -122,57 +128,7 @@
         </lr-layout>
       </el-row>
 
-      <!-- <aside>
-      
-        <div
-           class="btn-toggle"
-          @click="isShowAside = !isShowAside"
-          :class="{ open: !isShowAside, close: isShowAside }"
-        >
-        </div>
-        <el-row>
-          <el-row class="header-tool">
-            <i-icon y="6px" icon="#i-standard-service" size="mini"> </i-icon>
-            <label>浏览</label>
 
-            <i-button icon="#i-gengduo-a" radius class="header-right">
-            </i-button>
-          </el-row>
-          <el-row>
-            <i-collapse size="mini" v-model="explore">
-              <i-collapse-item title="" name="1">
-                <template slot="title">
-                  <i-icon icon="#i-Standard-1" size="mini"> </i-icon>
-                  接口模板管理
-                </template>
-
-                <i-tree :setting="setting" :nodes="treeDatas" />
-              </i-collapse-item>
-            </i-collapse>
-
-            <i-collapse size="mini" v-model="explore">
-              <i-collapse-item title="服务管理" name="2">
-                <template slot="title">
-                  <i-icon icon="#i-yewu" size="mini"> </i-icon>
-                  服务管理
-                </template>
-
-                <div>
-                  与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
-                </div>
-                <div>
-                  在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。
-                </div>
-              </i-collapse-item>
-            </i-collapse>
-          </el-row>
-        </el-row>
-      </aside>
-      <el-row class="box-editor">
-        <el-row style="background: green; width: 100%">
-          <span> test</span>
-        </el-row>
-      </el-row> -->
     </el-row>
     <el-row class="content-foot">
       <el-row>

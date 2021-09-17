@@ -21,6 +21,12 @@ const postfix = [
     file_type: "sql",
     icon: "#i-SQL1",
     fix: [".sql"]
+  },
+  {
+    file_type: "json",
+    icon: "#i-API",
+    fix: [".api"]
+
   }
 ]
 
@@ -52,15 +58,51 @@ export default {
     }
   },
   methods: {
-    removeTab(path, group_name) {
+    clickTab(path, group_name) {
+      let tab = this.get_tab(path["name"], group_name)
+
+      this.$emit("tabClick", tab["tag"], tab["treeId"])
+
+
+    },
+    get_tab(path, group_name) {
       let group = this.get_group(group_name)
       for (let i = 0; i < group.files.length; i++) {
         let file = group.files[i]
         if (file["name"] == path) {
-          group.files.remove(file)
-          break
+          return file
         }
       }
+    },
+    get_tab_index(path, group_name) {
+      let group = this.get_group(group_name)
+      for (let i = 0; i < group.files.length; i++) {
+        let file = group.files[i]
+        if (file["name"] == path) {
+          return i
+        }
+      }
+      return 0
+    },
+
+    removeTab(path, group_name) {
+
+      let group = this.get_group(group_name)
+      let tab = this.get_tab(path, group_name)
+      let index = this.get_tab_index(path,group_name)
+      if (group.active == tab["name"]) {
+        let target = 0
+        if (group.files.length == 1) {// 只有一个
+          target = index
+        } else if (group.files.length == index + 1) {//最后一个
+          target = index - 1
+        } else {//中间位置
+          target = index + 1
+        }
+        group.active = group.files[target]["name"]
+
+      }
+      group.files.remove(tab)
     },
     get_group_dict() {
       let d = {}
@@ -90,11 +132,12 @@ export default {
 
 
     },
-    get_file_obj(filename, path, content, default_file_type = "python", tag = "") {
+    get_file_obj(filename, path, content, default_file_type = "python", tag = "", treeId = "") {
 
       let f = this.get_file_config(path, default_file_type)
       let o = {
         "tag": tag,
+        "treeId": treeId,
         "icon": f["icon"],
         "name": path,
         "label": filename,
@@ -129,6 +172,7 @@ export default {
       let path = file["path"]
       let content = file["content"]
       let tag = file["tag"]
+      let treeId = file["treeId"]
       let group_name = file["group_name"]
       if (!group_name) {
         group_name = "default"
@@ -140,7 +184,7 @@ export default {
 
 
       let group = this.get_group(group_name)
-      let file_obj = this.get_file_obj(filename, path, content, default_file_type, tag)
+      let file_obj = this.get_file_obj(filename, path, content, default_file_type, tag, treeId)
       group.files.push(file_obj)
       group.active = path
     },

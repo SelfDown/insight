@@ -3,6 +3,7 @@
     <pane v-for="group,i_index in groups" :key="i_index">
       <i-tabs v-model="group.active"
               v-show="group.files.length>0"
+              @tab-click="(tab)=>{clickTab(tab,group['group'])}"
               @tab-remove="(tab)=>{removeTab(tab,group['group'])}"
               closable
               type="card">

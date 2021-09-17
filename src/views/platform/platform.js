@@ -48,7 +48,8 @@ export default {
   props: {},
   data() {
     return {
-
+      file_tree_ref: "dir_tree",
+      service_tree_ref: "service_tree",
       content: "",
       flow_show: false,
       flow_title: "查看流程",
@@ -84,71 +85,12 @@ export default {
       bottomIconStyle: {
         transform: 'translateY(2px)'
       },
-      treeDatas: [
-        {
-          id: 1,
-          pid: 0,
-          name: '系统',
-          open: true,
-          iconSkin: 'insight-system',
-          children: [
-            {id: 11, iconSkin: 'insight-service', name: '登录', open: true},
-            {id: 12, iconSkin: 'insight-service', name: '数据源', open: true}
-          ]
-        },
 
-        {
-          id: 2,
-          name: '基础接口',
-          checked: true,
-          open: false,
-          iconSkin: 'insight-normal',
-          children: [
-            {id: 21, iconSkin: 'insight-service', name: '新增'},
-            {id: 22, iconSkin: 'insight-service', name: '修改', open: true},
-            {id: 22, iconSkin: 'insight-service', name: '删除', open: true},
-            {
-              id: 22,
-              iconSkin: 'insight-service',
-              name: '模板查询',
-              open: true
-            }
-          ]
-        },
-
-        {
-          id: 3,
-          pid: 0,
-          iconSkin: 'insight-file',
-          name: '文件',
-          checked: true,
-          open: true,
-          children: [
-            {
-              id: 32,
-              iconSkin: 'insight-service',
-              name: '文件上传',
-              open: true
-            }
-          ]
-        },
-
-        {
-          id: 4,
-          iconSkin: 'insight-other',
-          name: '第三方接口',
-          checked: true,
-          open: true,
-          children: [
-            {id: 41, iconSkin: 'insight-service', name: 'SSH', open: true},
-            {id: 42, iconSkin: 'insight-service', name: 'HTTP', open: true}
-          ]
-        }
-      ],
       //ztree对象
       ztreeObj: null,
 
       setting: {
+        treeId: "key",
         view: {
           showIcon: true,
           nameIsHTML: true,
@@ -214,105 +156,7 @@ export default {
       nodes: [],
       target: "server.install_monitor",
       links: [],
-      fileName: "first",
-      files: [
-        {
-          "icon": "#i-SQL1",
-          "name": "first",
-          "label": "我的行程",
-          "content": "我的行程"
-        },
-        {
-          "icon": "#i-json",
-          "name": "second",
-          "label": "配置管理",
-          "content": "配置管理"
-        },
-        {
-          "icon": "#i-yaml",
-          "name": "third",
-          "label": "角色管理",
-          "content": "角色管理"
-        },
-        {
-          "icon": "#i-standardchartered",
-          "name": "fourth",
-          "label": "定时任务补偿",
-          "content": "定时任务补偿"
-        },
-        {
-          "icon": "#i-SQL1",
-          "name": "first",
-          "label": "我的行程",
-          "content": "我的行程"
-        },
-        {
-          "icon": "#i-json",
-          "name": "second",
-          "label": "配置管理",
-          "content": "配置管理"
-        },
-        {
-          "icon": "#i-yaml",
-          "name": "third",
-          "label": "角色管理",
-          "content": "角色管理"
-        },
-        {
-          "icon": "#i-standardchartered",
-          "name": "fourth",
-          "label": "定时任务补偿",
-          "content": "定时任务补偿"
-        },
-        {
-          "icon": "#i-SQL1",
-          "name": "first",
-          "label": "我的行程",
-          "content": "我的行程"
-        },
-        {
-          "icon": "#i-json",
-          "name": "second",
-          "label": "配置管理",
-          "content": "配置管理"
-        },
-        {
-          "icon": "#i-yaml",
-          "name": "third",
-          "label": "角色管理",
-          "content": "角色管理"
-        },
-        {
-          "icon": "#i-standardchartered",
-          "name": "fourth",
-          "label": "定时任务补偿",
-          "content": "定时任务补偿"
-        },
-        {
-          "icon": "#i-SQL1",
-          "name": "first",
-          "label": "我的行程",
-          "content": "我的行程"
-        },
-        {
-          "icon": "#i-json",
-          "name": "second",
-          "label": "配置管理",
-          "content": "配置管理"
-        },
-        {
-          "icon": "#i-yaml",
-          "name": "third",
-          "label": "角色管理",
-          "content": "角色管理"
-        },
-        {
-          "icon": "#i-standardchartered",
-          "name": "fourth",
-          "label": "定时任务补偿",
-          "content": "定时任务补偿"
-        },
-      ]
+
 
     }
   },
@@ -331,6 +175,37 @@ export default {
   },
 
   methods: {
+    tabClick(tag, key) {
+      let name = "key"
+      if (tag == this.service_tree_ref) {
+        name = "service"
+      } else {
+        name = "key"
+      }
+      let node = this.get_node(tag, key, name)
+      if (node) {
+        this.select_node(tag, node)
+      }
+    },
+
+    get_ztree_obj(tag) {
+      let ztree = this.$refs[tag]
+      if (ztree) {
+        return ztree.ztreeObj
+      }
+    },
+    select_node(tag, node) {
+      let ztreeObj = this.get_ztree_obj(tag)
+      if (node) {
+        ztreeObj.selectNode(node)
+      }
+
+    },
+    get_node(tag, key, name = "key") {
+      let ztreeObj = this.get_ztree_obj(tag)
+
+      return ztreeObj.getNodeByParam(name, key);
+    },
     open_flow() {
       this.flow_show = true
       this.get_flow_data()
@@ -372,6 +247,7 @@ export default {
       }
     },
     dir_click(evt, treeId, node) {
+
       if (node["type"] == "folder") {
         return
       }
@@ -385,21 +261,25 @@ export default {
       this.file_path = names.join("/")
 
       this.show_type = "file"
-      this.add_editor_file(node["name"], this.file_path)
+      this.add_editor_file(node["name"], this.file_path, this.file_tree_ref, node["key"])
 
 
     },
-    async add_editor_file(file_name, path) {
+    async add_editor_file(file_name, path, tag, treeId, content = null) {
       // 如果已经存在打开文件，就选中，否则请求服务器
       if (this.$refs.file_group.has_file(path)) {
         this.$refs.file_group.set_active_path(path)
       } else {
-        let content = await this.get_file_content(path)
+        if (content == null) {
+          content = await this.get_file_content(path)
+        }
+
         let file = {
           filename: file_name,
           path: path,
           content: content,
-          tag: "file"
+          tag: tag,
+          treeId: treeId
         }
         this.$refs.file_group.add_file(file)
       }
@@ -447,17 +327,26 @@ export default {
     },
 
     service_node_click(evt, treeId, node) {
+
       if (node.level < 1) {
         return
       }
       let service = node["key"]
       let parent = node.getParentNode()
       let group = parent["key"]
+      let names = [node["key"]]
+      while (parent) {
+        let node = parent
+        names.unshift(node["key"])
+        parent = node.getParentNode()
+      }
+      let path = names.join("/") + ".api"
       let data = this.get_data(group, service)
       this.show_type = "config"
       // this.file_options["language"]="json"
-      this.api = JSON.stringify(data, null, "\t")
-      console.log(this.api)
+      let api = JSON.stringify(data, null, "\t")
+      let service_key = node["service"]
+      this.add_editor_file(service_key, path, this.service_tree_ref, service_key, api)
 
 
     },
