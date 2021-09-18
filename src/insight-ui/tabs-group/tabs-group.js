@@ -87,7 +87,7 @@ export default {
     },
 
     closeRight() {
-   
+
 
       let group = this.get_group(this.current_group)
       let r = []
