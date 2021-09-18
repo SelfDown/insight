@@ -2,6 +2,7 @@ import {Splitpanes, Pane} from 'splitpanes'
 import ITabs from "../tabs"
 import ITabPane from "../tabs/tab-pane"
 import IIcon from "../icon"
+import ILine from "../line"
 import IMonaco from "../monaco"
 import 'splitpanes/dist/splitpanes.css'
 import * as Common from "@/common/index.js"
@@ -38,11 +39,13 @@ export default {
     ITabs,
     ITabPane,
     IIcon,
-    IMonaco
+    IMonaco,
+    ILine
   },
   data() {
     return {
       current_group: "default",
+      current_tab_index: "",
       groups: [
         {
           group: "default",
@@ -52,15 +55,101 @@ export default {
       ],
       codeStyle: {
         height: Common.getTableHeight(-102) + "px",
-        width: "100%"
+        width: "100%",
+
       },
+      left: 0,
+      top: 0,
+      contextMenuVisible: false,
 
     }
   },
   methods: {
+    closeAll() {
+      let group = this.get_group(this.current_group)
+      group.files.splice(0, group.files.length)
+      this.contextMenuVisible = false
+    },
+    closeLeft() {
+      let group = this.get_group(this.current_group)
+      let r = []
+      for (let i = 0; i < group.files.length; i++) {
+        let file = group.files[i]
+        if (i < this.current_tab_index) {
+          let path = file["name"]
+          r.push({"path": path, "group_name": this.current_group})
+        }
+      }
+      r.map(item => {
+        this.removeTab(item["path"], item["group_name"])
+      })
+      this.contextMenuVisible = false
+    },
+
+    closeRight() {
+   
+
+      let group = this.get_group(this.current_group)
+      let r = []
+      for (let i = 0; i < group.files.length; i++) {
+        let file = group.files[i]
+        if (i > this.current_tab_index) {
+          let path = file["name"]
+          r.push({"path": path, "group_name": this.current_group})
+        }
+      }
+      r.map(item => {
+        this.removeTab(item["path"], item["group_name"])
+      })
+      this.contextMenuVisible = false
+
+    },
+
+    closeOther() {
+
+      let group = this.get_group(this.current_group)
+      let r = []
+      for (let i = 0; i < group.files.length; i++) {
+        let file = group.files[i]
+        if (i != this.current_tab_index) {
+          let path = file["name"]
+          r.push({"path": path, "group_name": this.current_group})
+        }
+      }
+      r.map(item => {
+        this.removeTab(item["path"], item["group_name"])
+      })
+      this.contextMenuVisible = false
+
+    },
+
+    hidden_menu(event) {
+
+      let tab_menu = document.getElementById("tab_menu")
+      if (tab_menu && !tab_menu.contains(event.target)) {
+        this.contextMenuVisible = false
+      }
+    },
+    openContextMenu(e, group_name) {
+
+      if (e.target.id.startsWith("tabs_")) {
+        let item = e.target.id.split("_")
+        if (item.length >= 2) {
+          this.current_tab_index = parseInt(item[2])
+        }
+
+        this.contextMenuVisible = true;
+        this.left = e.clientX;
+        this.top = e.clientY + 10;
+        this.current_group = group_name
+      } else {
+        this.contextMenuVisible = false
+      }
+
+
+    },
     clickTab(path, group_name) {
       let tab = this.get_tab(path["name"], group_name)
-
       this.$emit("tabClick", tab["tag"], tab["treeId"])
 
 
@@ -84,12 +173,9 @@ export default {
       }
       return 0
     },
-
-    removeTab(path, group_name) {
-
+    removeTabByIndex(index, group_name) {
       let group = this.get_group(group_name)
-      let tab = this.get_tab(path, group_name)
-      let index = this.get_tab_index(path,group_name)
+      let tab = group.files[index]
       if (group.active == tab["name"]) {
         let target = 0
         if (group.files.length == 1) {// 只有一个
@@ -103,6 +189,13 @@ export default {
 
       }
       group.files.remove(tab)
+
+    },
+
+    removeTab(path, group_name) {
+      let index = this.get_tab_index(path, group_name)
+      this.removeTabByIndex(index, group_name)
+
     },
     get_group_dict() {
       let d = {}

@@ -1,3 +1,32 @@
+.tabs-contextmenu {
+  width: 300px;
+  margin: 0;
+  //border: 1px solid #ccc;
+  background: #252526;
+  z-index: 3000;
+  position: fixed;
+  list-style-type: none;
+  padding: 10px 0;
+  border-radius: 2px;
+  font-size: 13px;
+  color: #C2C2C2;
+
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+
+  li {
+    padding: 2px 20px;
+    margin: 4px 0px;
+
+  }
+
+  li:hover {
+    color: #fff;
+    background: #094771;
+    cursor: pointer;
+  }
+}
+
+
 .dark-theme.splitpanes--vertical > .splitpanes__splitter, .dark-theme .splitpanes--vertical > .splitpanes__splitter {
   width: 1.4px;
   background: #444444;
@@ -14,9 +43,9 @@
 .dark-theme.splitpanes--vertical > .splitpanes__splitter:after,
 .dark-theme .splitpanes--vertical > .splitpanes__splitter:before,
 .dark-theme .splitpanes--vertical > .splitpanes__splitter:after {
-    width: 1.4px;
-    height: 100%;
-    z-index: 100;
+  width: 1.4px;
+  height: 100%;
+  z-index: 100;
 }
 
 
@@ -24,17 +53,21 @@
 .dark-theme.splitpanes--vertical > .splitpanes__splitter:hover:after,
 .dark-theme .splitpanes--vertical > .splitpanes__splitter:hover:before,
 .dark-theme .splitpanes--vertical > .splitpanes__splitter:hover:after {
-    width: 5px;
-    margin-left: -2.5px;
-    height: 100%;
-    z-index: 100;
-   background-color:  #007ACC;
+  width: 5px;
+  margin-left: -2.5px;
+  height: 100%;
+  z-index: 100;
+  background-color: #007ACC;
 }
 
 .splitpanes.dark-theme .splitpanes__splitter:after {
-    content: "";
-    position: absolute;
+  content: "";
+  position: absolute;
 }
-.name{
+
+.name {
   color: #d5e1f2;
 }
+
+
+
