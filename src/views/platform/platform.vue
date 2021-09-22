@@ -44,7 +44,7 @@
                 <i-collapse size="mini" v-model="explore">
                   <i-collapse-item title="" name="1">
                     <template slot="title">
-                      <i-icon icon="#i-Standard-1" size="mini"></i-icon>
+                      <i-icon  icon="#i-Standard-1" size="mini"></i-icon>
                       接口模板管理
                     </template>
                     <i-tree

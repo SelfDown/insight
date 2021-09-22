@@ -1,0 +1,27 @@
+.tabs-contextmenu {
+  width: 300px;
+  margin: 0;
+  //border: 1px solid #ccc;
+  background: #252526;
+  z-index: 50;
+  position: fixed;
+  list-style-type: none;
+  padding: 10px 0;
+  border-radius: 2px;
+  font-size: 13px;
+  color: #C2C2C2;
+
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+
+  li {
+    padding: 2px 20px;
+    margin: 4px 0px;
+
+  }
+
+  li:hover {
+    color: #fff;
+    background: #094771;
+    cursor: pointer;
+  }
+}

@@ -44,15 +44,10 @@ export default {
   },
   data() {
     return {
-      current_group: "default",
-      current_tab_index: "",
-      groups: [
-        {
-          group: "default",
-          active: "first",
-          files: []
-        }
-      ],
+      left_context_current_group: "default",
+      right_context_current_group: "default",
+      right_context_current_tab_index: "",
+      groups: [],
       codeStyle: {
         height: Common.getTableHeight(-102) + "px",
         width: "100%",
@@ -64,20 +59,81 @@ export default {
 
     }
   },
+  watch: {
+    groups: {
+      handler(val) {
+        let rm = []
+        val.map(item => {
+          if (item.files.length <= 0) {
+            rm.push(item)
+          }
+        })
+        rm.map(item => {
+          val.remove(item)
+        })
+
+        let gd = this.get_group_dict()
+        if (!gd[this.left_context_current_group]) {
+          if (this.groups.length > 0) {
+            this.left_context_current_group = this.groups[0]["group"]
+          } else {
+            this.left_context_current_group = ""
+          }
+
+        }
+
+        // let g = this.get_left_context_current_group(this.left_context_current_group)
+        // console.log(g)
+      },
+      deep: true
+    }
+  },
   methods: {
+    get_left_context_current_group(default_group) {
+      let group = this.get_group(this.left_context_current_group)
+      if (group) {
+        return group
+      } else {
+        return this.get_group(default_group)
+      }
+    },
+    panelClick(group) {
+      this.left_context_current_group = group["group"]
+    },
+    splitTopDown() {
+
+    },
+    splitLeftRight() {
+      let tab = this.get_right_context_tab()
+      let from_group = this.get_group(this.right_context_current_group)
+
+      let new_group = {
+        group: require('node-uuid').v4(),
+        from: from_group["group"],
+        active: tab["name"],
+        files: [tab]
+      }
+      this.groups.push(new_group)
+      this.contextMenuVisible = false
+    },
+    get_right_context_tab() {
+      let group = this.get_group(this.right_context_current_group)
+      return group.files[this.right_context_current_tab_index]
+
+    },
     closeAll() {
-      let group = this.get_group(this.current_group)
+      let group = this.get_group(this.right_context_current_group)
       group.files.splice(0, group.files.length)
       this.contextMenuVisible = false
     },
     closeLeft() {
-      let group = this.get_group(this.current_group)
+      let group = this.get_group(this.right_context_current_group)
       let r = []
       for (let i = 0; i < group.files.length; i++) {
         let file = group.files[i]
-        if (i < this.current_tab_index) {
+        if (i < this.right_context_current_tab_index) {
           let path = file["name"]
-          r.push({"path": path, "group_name": this.current_group})
+          r.push({"path": path, "group_name": this.right_context_current_group})
         }
       }
       r.map(item => {
@@ -89,13 +145,13 @@ export default {
     closeRight() {
 
 
-      let group = this.get_group(this.current_group)
+      let group = this.get_group(this.right_context_current_group)
       let r = []
       for (let i = 0; i < group.files.length; i++) {
         let file = group.files[i]
-        if (i > this.current_tab_index) {
+        if (i > this.right_context_current_tab_index) {
           let path = file["name"]
-          r.push({"path": path, "group_name": this.current_group})
+          r.push({"path": path, "group_name": this.right_context_current_group})
         }
       }
       r.map(item => {
@@ -107,13 +163,13 @@ export default {
 
     closeOther() {
 
-      let group = this.get_group(this.current_group)
+      let group = this.get_group(this.right_context_current_group)
       let r = []
       for (let i = 0; i < group.files.length; i++) {
         let file = group.files[i]
-        if (i != this.current_tab_index) {
+        if (i != this.right_context_current_tab_index) {
           let path = file["name"]
-          r.push({"path": path, "group_name": this.current_group})
+          r.push({"path": path, "group_name": this.right_context_current_group})
         }
       }
       r.map(item => {
@@ -135,13 +191,13 @@ export default {
       if (e.target.id.startsWith("tabs_")) {
         let item = e.target.id.split("_")
         if (item.length >= 2) {
-          this.current_tab_index = parseInt(item[2])
+          this.right_context_current_tab_index = parseInt(item[2])
         }
 
         this.contextMenuVisible = true;
         this.left = e.clientX;
         this.top = e.clientY + 10;
-        this.current_group = group_name
+        this.right_context_current_group = group_name
       } else {
         this.contextMenuVisible = false
       }
@@ -248,6 +304,16 @@ export default {
 
     get_group(group) {
       let g_dict = this.get_group_dict()
+
+      if (group == "default" && !g_dict[group]) {
+        let g_new = {
+          group: "default",
+          active: "first",
+          files: []
+        }
+        this.groups.push(g_new)
+        return g_new
+      }
       return g_dict[group]
     },
     /**
@@ -276,14 +342,14 @@ export default {
       }
 
 
-      let group = this.get_group(group_name)
+      let group = this.get_left_context_current_group(group_name)
       let file_obj = this.get_file_obj(filename, path, content, default_file_type, tag, treeId)
       group.files.push(file_obj)
       group.active = path
     },
 
     set_active_path(path, group_name = "default") {
-      let group = this.get_group(group_name)
+      let group = this.get_left_context_current_group(group_name)
       group["active"] = path
     },
 
@@ -294,7 +360,10 @@ export default {
      * @returns {boolean}
      */
     has_file(path, group_name = "default") {
-      let group = this.get_group(group_name)
+      let group = this.get_left_context_current_group(group_name)
+      if (!group) {
+        return false
+      }
       for (let i = 0; i < group.files.length; i++) {
         let f = group.files[i]
         if (f.name == path) {

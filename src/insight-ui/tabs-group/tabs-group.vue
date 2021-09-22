@@ -1,21 +1,22 @@
 <template>
-  <el-row @click.native="hidden_menu">
+  <el-row @click.native="hidden_menu" class="dark-theme">
 
 
-    <splitpanes class="dark-theme">
+    <splitpanes v-if="groups.length>0">
       <pane v-for="group,i_index in groups"
 
+            @click.native="panelClick(group)"
             :key="i_index">
         <i-tabs v-model="group.active"
 
-                v-show="group.files.length>0"
+
                 @tab-click="(tab)=>{clickTab(tab,group['group'])}"
                 @tab-remove="(tab)=>{removeTab(tab,group['group'])}"
                 @contextmenu.prevent.native="openContextMenu($event,group['group'])"
                 closable
-
                 type="card">
           <i-tab-pane v-for="item,j_index in group.files"
+
 
                       :key="j_index" :label="item.label" :name="item.name">
                 <span slot="label" :id="'tabs_'+group['group']+'_'+j_index">
@@ -33,7 +34,6 @@
             >
 
             </i-monaco>
-            <!--          {{item.content}}-->
           </i-tab-pane>
         </i-tabs>
 
@@ -47,6 +47,20 @@
       :style="{left:left+'px',top:top+'px',display: 'block'}"
       class="tabs-contextmenu"
     >
+      <li
+        @click="splitLeftRight"
+      >
+        <i-icon y="6px" icon="#i-zuoyoufenping-copy" size="mini"/>
+        左右分屏
+      </li>
+
+<!--      <li-->
+<!--        @click="closeAll"-->
+<!--      >-->
+<!--        <i-icon y="6px" icon="#i-shangxiafenping" size="mini"/>-->
+<!--        上下分屏-->
+<!--      </li>-->
+      <i-line/>
       <li
         @click="closeAll"
       >
@@ -77,6 +91,9 @@
 <script src="./tabs-group.js">
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
   @import "./tabs-group.scss";
+</style>
+<style lang="scss" scoped>
+  @import "./tabs-menu.scss";
 </style>
