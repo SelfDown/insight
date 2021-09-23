@@ -28,6 +28,15 @@
       transition: transform 0.5s;
       will-change: padding-left;
     }
+    .top-search{
+      width: 91%;
+      z-index: 50;
+      position: absolute;
+    }
+    .content-tree{
+      margin-top: 24px;
+
+    }
   }
 
   .content-foot{

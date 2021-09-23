@@ -16,6 +16,7 @@ import IInput from './input'
 import ITabs from "./tabs"
 import ITabPane from "./tabs/tab-pane"
 import ITabsGroup from "./tabs-group"
+import ILine from "./line"
 
 const components = {
   ITree,
@@ -35,7 +36,8 @@ const components = {
   IInput,
   ITabs,
   ITabPane,
-  ITabsGroup
+  ITabsGroup,
+  ILine
 
 }
 
@@ -57,7 +59,8 @@ export {
   IInput,
   ITabs,
   ITabPane,
-  ITabsGroup
+  ITabsGroup,
+  ILine
 
 }
 export default {

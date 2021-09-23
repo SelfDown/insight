@@ -53,13 +53,6 @@
         <i-icon y="6px" icon="#i-zuoyoufenping-copy" size="mini"/>
         左右分屏
       </li>
-
-<!--      <li-->
-<!--        @click="closeAll"-->
-<!--      >-->
-<!--        <i-icon y="6px" icon="#i-shangxiafenping" size="mini"/>-->
-<!--        上下分屏-->
-<!--      </li>-->
       <i-line/>
       <li
         @click="closeAll"

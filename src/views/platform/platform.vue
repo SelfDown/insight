@@ -29,9 +29,9 @@
     </el-row>
     <el-row class="content-body">
       <el-row>
-        <lr-layout>
+        <lr-layout @click.native="hidden_tree_menu">
           <template slot="left">
-            <el-row>
+            <el-row >
               <el-row class="header-tool">
                 <i-icon y="6px" icon="#i-standard-service" size="mini">
                 </i-icon>
@@ -44,9 +44,10 @@
                 <i-collapse size="mini" v-model="explore">
                   <i-collapse-item title="" name="1">
                     <template slot="title">
-                      <i-icon  icon="#i-Standard-1" size="mini"></i-icon>
+                      <i-icon icon="#i-Standard-1" size="mini"></i-icon>
                       接口模板管理
                     </template>
+
                     <i-tree
                       :ref="file_tree_ref"
                       :element-loading-background="loading_background"
@@ -56,20 +57,34 @@
                 </i-collapse>
 
                 <i-collapse size="mini" v-model="explore">
+
                   <i-collapse-item title="服务管理" name="2">
                     <template slot="title">
                       <i-icon icon="#i-yewu" size="mini"></i-icon>
                       服务管理
                     </template>
+                    <i-input
+                      class="top-search"
+                      @keyup.enter.native="filter_search"
+
+                      placeholder="请输入服务关键字回车"
+                      v-model="service_search">
+
+                    </i-input>
 
                     <i-tree
+                      class="content-tree"
                       :ref="service_tree_ref"
                       :element-loading-background="loading_background"
                       v-loading="service_loading"
                       :setting="service_setting" :nodes="service_nodes"/>
+
+
                   </i-collapse-item>
                 </i-collapse>
               </el-row>
+
+
             </el-row>
           </template>
           <template slot="right">
@@ -79,51 +94,51 @@
 
             </i-tabs-group>
 
-<!--            <i-tabs v-model="fileName"-->
-<!--                    closable-->
-<!--                    type="card">-->
-<!--              <i-tab-pane v-for="item,index in files" :key="index" :label="item.label+'_'+index" :name="item.name+'_'+index">-->
-<!--                <span slot="label">-->
-<!--                   <i-icon y="6px" :icon="item.icon" size="mini"/>-->
-<!--                  {{item.content}}-->
-<!--                </span>-->
-<!--                {{item.content}}-->
-<!--              </i-tab-pane>-->
+            <!--            <i-tabs v-model="fileName"-->
+            <!--                    closable-->
+            <!--                    type="card">-->
+            <!--              <i-tab-pane v-for="item,index in files" :key="index" :label="item.label+'_'+index" :name="item.name+'_'+index">-->
+            <!--                <span slot="label">-->
+            <!--                   <i-icon y="6px" :icon="item.icon" size="mini"/>-->
+            <!--                  {{item.content}}-->
+            <!--                </span>-->
+            <!--                {{item.content}}-->
+            <!--              </i-tab-pane>-->
 
-<!--            </i-tabs>-->
-
-
-<!--                              <el-row>-->
-
-<!--                          <i-monaco-->
-
-<!--                            :options="file_options"-->
-<!--                            :value="file_content"-->
-<!--                            :style="codeStyle"-->
-<!--                          >-->
-
-<!--                          </i-monaco>-->
-<!--                           <i-dialog-->
-<!--                             right-open-width="88%"-->
-<!--                             :visible.sync="flow_show" :title="flow_title">-->
-<!--                            <template slot="body">-->
-<!--                             <i-flow-->
-<!--                               v-loading="flow_loading"-->
-<!--                              :nodes="nodes"-->
-<!--                              :links="links"-->
-<!--                             >-->
-
-<!--                             </i-flow>-->
-<!--                            </template>-->
-<!--                           </i-dialog>-->
+            <!--            </i-tabs>-->
 
 
-<!--                        </el-row>      <el-row style="height:34px;padding-left:14px;line-height: 34px">-->
-<!--                          <i-input style="width: 300px" v-model="target"></i-input>-->
-<!--                          <i-button @click="open_flow">查看流程</i-button>-->
+            <!--                              <el-row>-->
 
-<!--                        </el-row>-->
-<!--            -->
+            <!--                          <i-monaco-->
+
+            <!--                            :options="file_options"-->
+            <!--                            :value="file_content"-->
+            <!--                            :style="codeStyle"-->
+            <!--                          >-->
+
+            <!--                          </i-monaco>-->
+            <!--                           <i-dialog-->
+            <!--                             right-open-width="88%"-->
+            <!--                             :visible.sync="flow_show" :title="flow_title">-->
+            <!--                            <template slot="body">-->
+            <!--                             <i-flow-->
+            <!--                               v-loading="flow_loading"-->
+            <!--                              :nodes="nodes"-->
+            <!--                              :links="links"-->
+            <!--                             >-->
+
+            <!--                             </i-flow>-->
+            <!--                            </template>-->
+            <!--                           </i-dialog>-->
+
+
+            <!--                        </el-row>      <el-row style="height:34px;padding-left:14px;line-height: 34px">-->
+            <!--                          <i-input style="width: 300px" v-model="target"></i-input>-->
+            <!--                          <i-button @click="open_flow">查看流程</i-button>-->
+
+            <!--                        </el-row>-->
+            <!--            -->
           </template>
         </lr-layout>
       </el-row>
@@ -172,9 +187,26 @@
         </i-button>
       </el-row>
     </el-row>
+    <!--右键-->
+    <ul
+      id="service_tree_menu"
+      v-show="serviceTreeVisible"
+      :style="{left:serviceTreeLeft+'px',top:serviceTreeTop+'px',display: 'block'}"
+      class="tabs-contextmenu"
+    >
+      <i-line/>
+      <li @click="serviceTreeVisible=false">
+        <i-icon y="6px" icon="#i-quxiao" size="mini"/>
+        取消
+      </li>
+    </ul>
   </el-row>
 </template>
 <script src="./platform.js"></script>
 <style lang="scss" scoped>
   @import './platform.scss';
 </style>
+<style lang="scss" scoped>
+  @import "./tabs-menu.scss";
+</style>
+

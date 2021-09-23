@@ -16,7 +16,8 @@ import {
   IInput,
   ITabs,
   ITabPane,
-  ITabsGroup
+  ITabsGroup,
+  ILine
 
 } from '@/insight-ui'
 import * as API from "@/api/index.js"
@@ -41,7 +42,8 @@ export default {
     IInput,
     ITabs,
     ITabPane,
-    ITabsGroup
+    ITabsGroup,
+    ILine
 
   },
 
@@ -50,6 +52,9 @@ export default {
     return {
       file_tree_ref: "dir_tree",
       service_tree_ref: "service_tree",
+      serviceTreeVisible: false,
+      serviceTreeLeft: 0,
+      serviceTreeTop: 0,
       content: "",
       flow_show: false,
       flow_title: "查看流程",
@@ -119,7 +124,8 @@ export default {
         //ztree回调函数
         callback: {
           //树选择事件
-          onClick: this.service_node_click
+          onClick: this.service_node_click,
+          onRightClick: this.service_node_right_click
         }
       },
 
@@ -156,6 +162,7 @@ export default {
       nodes: [],
       target: "server.install_monitor",
       links: [],
+      service_search: ""
 
 
     }
@@ -175,6 +182,72 @@ export default {
   },
 
   methods: {
+
+    hidden_tree_menu(event) {
+
+      let service_tree_menu = document.getElementById("service_tree_menu")
+      if (service_tree_menu && !service_tree_menu.contains(event.target)) {
+        this.serviceTreeVisible = false
+      }
+    },
+
+    filter_search() {
+      let ztreeObj = this.get_ztree_obj(this.service_tree_ref)
+      let search = this.service_search
+      //如果没有搜索条件，就显示全部
+      var nodes = ztreeObj.getNodesByParam("isHidden", true);
+      ztreeObj.showNodes(nodes);
+      if (!search) {
+
+        return
+      }
+
+
+      // 匹配节点方法
+      function matchNode(node) {
+        let match = false
+        //当前节点关键字匹配
+        if (node.key.indexOf(search) >= 0) {
+          match = true
+        }
+        //子节点内容匹配
+        if (!match && !node.isParent) {
+          let t = JSON.stringify(node)
+          if (t.indexOf(search) >= 0) {
+            match = true
+          }
+        }
+        return match
+
+      }
+
+      //过滤节点是否显示隐藏
+      function get_hide_service_node(node) {
+        let hide = true
+        if (matchNode(node)) {
+          hide = false
+        }
+        let parent = node.getParentNode(node)
+        if (hide && parent && matchNode(parent)) {
+          hide = false
+        }
+        if (hide && node.isParent) {
+          for (let i = 0; i < node.children.length; i++) {
+            let item = node.children[i]
+            if (matchNode(item)) {
+              hide = false
+              break
+            }
+          }
+
+        }
+        return hide
+      }
+
+      let h = ztreeObj.getNodesByFilter(get_hide_service_node)
+      ztreeObj.hideNodes(h)
+      ztreeObj.expandAll(true);
+    },
     tabClick(tag, key) {
       let name = "key"
       if (tag == this.service_tree_ref) {
@@ -324,6 +397,18 @@ export default {
           }
         }
       }
+    },
+    service_node_right_click(evt, treeId, node) {
+      if (node.isParent) {
+        return
+      }
+      console.log(node)
+      let treeObj = this.get_ztree_obj(this.service_tree_ref)
+      treeObj.selectNode(node);
+      this.serviceTreeVisible = true
+      this.serviceTreeLeft = evt.clientX
+      this.serviceTreeTop = evt.clientY
+
     },
 
     service_node_click(evt, treeId, node) {
