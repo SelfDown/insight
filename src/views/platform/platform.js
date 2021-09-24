@@ -52,6 +52,7 @@ export default {
     return {
       file_tree_ref: "dir_tree",
       service_tree_ref: "service_tree",
+      right_service_node: null,
       serviceTreeVisible: false,
       serviceTreeLeft: 0,
       serviceTreeTop: 0,
@@ -113,13 +114,17 @@ export default {
         view: {
           showIcon: true,
           nameIsHTML: true,
-          fontCss: {'font-size': '12px', 'font-family': '微软雅黑bai'}
+          fontCss: {'font-size': '12px', 'font-family': '微软雅黑bai'},
+
         },
 
         data: {
           key: {
-            name: "key"
-          }
+            name: "origin",
+            title: "key"
+
+          },
+
         },
         //ztree回调函数
         callback: {
@@ -178,6 +183,19 @@ export default {
         return "text/x-mysql"
       }
       return "yaml"
+    },
+    show_right_flow() {
+      if (!this.right_service_node) {
+        return false
+      }
+
+      if (this.right_service_node.is_flow) {
+        return true
+      } else {
+        return false
+      }
+
+
     }
   },
 
@@ -281,6 +299,8 @@ export default {
     },
     open_flow() {
       this.flow_show = true
+      this.serviceTreeVisible = false
+      this.target = this.right_service_node.service
       this.get_flow_data()
     },
 
@@ -380,8 +400,37 @@ export default {
       let response = await API.TEMPLATE({"service": "config.router"})
       this.service_loading = false
       let data = response.data
+
+      function handler_html(nodes) {
+        let flow = `
+        <svg
+          title="流程"
+          class="icon icon-item"
+          aria-hidden="true"
+          style="margin-left:4px;width:1rem;height: 1rem;transform: translateY(4px)"
+        >
+          <use xlink:href="#i-liucheng"></use>
+        </svg>
+       `
+        nodes.map(item => {
+          item.origin = item["key"]
+          if (item.children) {
+            item.children.map(child => {
+
+              child.origin = child["key"]
+              if (child.is_flow) {
+                child.origin += flow
+              }
+            })
+          }
+        })
+        return nodes
+
+      }
+
       if (data.success) {
-        this.service_nodes = data.data
+        this.service_nodes = handler_html(data.data)
+
       }
     },
     get_data(group, service) {
@@ -402,7 +451,7 @@ export default {
       if (node.isParent) {
         return
       }
-      console.log(node)
+      this.right_service_node = node
       let treeObj = this.get_ztree_obj(this.service_tree_ref)
       treeObj.selectNode(node);
       this.serviceTreeVisible = true
@@ -410,7 +459,9 @@ export default {
       this.serviceTreeTop = evt.clientY
 
     },
-
+    service_node_dom(treeId, treeNode) {
+      treeNode.label = "test"
+    },
     service_node_click(evt, treeId, node) {
 
       if (node.level < 1) {

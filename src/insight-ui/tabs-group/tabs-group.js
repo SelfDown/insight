@@ -49,7 +49,7 @@ export default {
       right_context_current_tab_index: "",
       groups: [],
       codeStyle: {
-        height: Common.getTableHeight(-102) + "px",
+        height: Common.getTableHeight(-116) + "px",
         width: "100%",
 
       },

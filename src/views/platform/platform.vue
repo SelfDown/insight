@@ -31,7 +31,7 @@
       <el-row>
         <lr-layout @click.native="hidden_tree_menu">
           <template slot="left">
-            <el-row >
+            <el-row>
               <el-row class="header-tool">
                 <i-icon y="6px" icon="#i-standard-service" size="mini">
                 </i-icon>
@@ -93,6 +93,20 @@
               ref="file_group">
 
             </i-tabs-group>
+
+            <i-dialog
+              right-open-width="70%"
+              :visible.sync="flow_show" :title="flow_title">
+              <template slot="body">
+                <i-flow
+                  v-loading="flow_loading"
+                  :nodes="nodes"
+                  :links="links"
+                >
+
+                </i-flow>
+              </template>
+            </i-dialog>
 
             <!--            <i-tabs v-model="fileName"-->
             <!--                    closable-->
@@ -194,6 +208,11 @@
       :style="{left:serviceTreeLeft+'px',top:serviceTreeTop+'px',display: 'block'}"
       class="tabs-contextmenu"
     >
+
+      <li v-if="show_right_flow" @click="open_flow">
+        <i-icon y="6px" icon="#i-liucheng" size="mini"/>
+        显示流程
+      </li>
       <i-line/>
       <li @click="serviceTreeVisible=false">
         <i-icon y="6px" icon="#i-quxiao" size="mini"/>
