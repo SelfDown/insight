@@ -14,11 +14,8 @@
   },
   "keywords": [
     "vue",
-    "form",
-    "dynamic form",
-    "json",
-    "json schema",
-    "form design"
+    "idea"
+
   ],
   "main": "dist/vjdesign.umd.min.js",
   "module": "dist/vjdesign.common.js",
