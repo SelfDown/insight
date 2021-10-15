@@ -15,7 +15,6 @@
   "keywords": [
     "vue",
     "idea"
-
   ],
   "main": "dist/vjdesign.umd.min.js",
   "module": "dist/vjdesign.common.js",
