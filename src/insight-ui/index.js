@@ -17,6 +17,7 @@ import ITabs from "./tabs"
 import ITabPane from "./tabs/tab-pane"
 import ITabsGroup from "./tabs-group"
 import ILine from "./line"
+import ILowerCode from "./lower-code"
 
 const components = {
   ITree,
@@ -37,7 +38,8 @@ const components = {
   ITabs,
   ITabPane,
   ITabsGroup,
-  ILine
+  ILine,
+  ILowerCode
 
 }
 
@@ -60,7 +62,8 @@ export {
   ITabs,
   ITabPane,
   ITabsGroup,
-  ILine
+  ILine,
+  ILowerCode
 
 }
 export default {

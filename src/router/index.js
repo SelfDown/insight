@@ -24,6 +24,16 @@ let r = [
       tips: "insight配置",
       icon: "el-icon-omnis-edge"
     },
+  },
+  {
+    path: '/lowerCode',
+    view_path: `lower-code`,
+    name: 'lowerCode',
+    meta: {
+      title: "低代码平台",
+      tips: "低代码平台",
+     icon: "el-icon-omnis-edge"
+    },
   }
 ]
 let r_inter = []
@@ -85,7 +95,7 @@ export const constantRoutes = [
   },
   {
     path: '/',
-    redirect: '/platform/full'
+    redirect: '/lowerCode/full'
   }
 ]
 

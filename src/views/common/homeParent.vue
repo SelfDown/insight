@@ -18,6 +18,7 @@
         <el-menu-item index="uishow">Ui Show</el-menu-item>
         <el-menu-item index="default">Element 示例</el-menu-item>
         <el-menu-item index="antd">Ant Design</el-menu-item>
+        <el-menu-item index="lowerCode">低代码平台</el-menu-item>
       </el-menu>
       <!-- </div> -->
 

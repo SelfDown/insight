@@ -28,7 +28,6 @@ export default {
       default() {
         return {
           height: '14px',
-
           padding: '0px'
         }
       }

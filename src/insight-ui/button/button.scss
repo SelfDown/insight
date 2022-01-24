@@ -1,65 +1,66 @@
 .org_img_block {
-    /* display: table-cell;*/
-    vertical-align: middle;
-    text-align: center;
-    height: 22px;
-    line-height: 150%;
-    padding-left: 4px;
-    padding-right: 4px;
-    overflow: hidden;
-  
-    -moz-user-select: none;
-    /*火狐*/
-    -webkit-user-select: none;
-    /*webkit浏览器*/
-    -ms-user-select: none;
-    /*IE10*/
-    -khtml-user-select: none;
-    /*早期浏览器*/
-    user-select: none;
-    white-space: nowrap;
-    display: inline-block;
-    cursor: pointer;
-    color:#d0d0d0;
-  
-  
-  }
+  /* display: table-cell;*/
+  vertical-align: middle;
+  text-align: center;
+  height: 22px;
+  line-height: 150%;
+  padding-left: 4px;
+  padding-right: 4px;
+  overflow: hidden;
 
-  .radius{
-      border-radius: 5px;
-  }
-  
-  .has-line {
-    padding-right: 0px;
-    margin-right: -4px;
-  }
-  
-  .tool-icon-text {
-    font-size: 12px;
-    color: #585252;
-    margin-left: 2px;
-  }
-  
-  .org_img_block_enable:hover {
-    background: #353637 !important;
-  }
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+  white-space: nowrap;
+  display: inline-block;
+  cursor: pointer;
+  color: #d0d0d0;
 
-  .org_img_block_enable:active {
-    background: #353637 !important;
-  }
+
+}
+
+.radius {
+  border-radius: 5px;
+}
+
+.has-line {
+  padding-right: 0px;
+  margin-right: -4px;
+}
+
+.tool-icon-text {
+  font-size: 12px;
+  color: #585252;
+  margin-left: 2px;
+}
+
+.org_img_block_enable:hover {
+  background: #353637 !important;
+}
+
+.org_img_block_enable:active {
+  background: #353637 !important;
+}
 
 // 灰色色调
-  .org_img_block_grey:hover {
-    background: #4f4f4f !important;
-  }
+.org_img_block_grey:hover {
+  background: #4f4f4f !important;
+}
 
-  .org_img_block_grey:active {
-    background: #4f4f4f !important;
-  }
+.org_img_block_grey:active {
+  background: #4f4f4f !important;
+}
 
-  .org_img_block_grey {
-    background: #4f4f4f !important;
-  }
+.org_img_block_grey {
+  background: #4f4f4f !important;
+}
+
 //蓝色色调
 
 .org_img_block_blue:hover {
@@ -73,25 +74,24 @@
 .org_img_block_blue {
   background: #007ACC !important;
 }
-  
-  .icon-item {
-    top: 1px;
-    width: 1.1rem;
-    height: 1.1rem;
-    right: 2px;
-  }
-  
-  .show-underline {
-    text-decoration: underline;
-  }
-  
-  .el-icon-item{
-    display:inline-block;
-    height: 24px;
-    line-height: 24px;
-  }
-  
-  .only-icon{
-    width: 25px;
-  }
-  
+
+.icon-item {
+  top: 1px;
+  width: 1.1rem;
+  height: 1.1rem;
+  right: 2px;
+}
+
+.show-underline {
+  text-decoration: underline;
+}
+
+.el-icon-item {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+}
+
+.only-icon {
+  width: 25px;
+}
