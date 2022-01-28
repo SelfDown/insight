@@ -28,6 +28,7 @@
     "prepublish": "npm run dist"
   },
   "dependencies": {
+    "@vue/babel-preset-jsx": "^1.2.4",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "codemirror": "^5.62.3",

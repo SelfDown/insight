@@ -1,4 +1,5 @@
 {
+  "type": "form",
   "name": "LcTable",
   "path": "./lc-table",
   "description": "表格"

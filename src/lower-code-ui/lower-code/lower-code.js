@@ -29,6 +29,7 @@ export default {
   //     return <component is={require(`./test/test.vue`)}></component>
   //   },
   created(){
+    // console.log(this.extend)
   //   console.log("xxx")
   //
   //   Vue.component("test",res => require([`./test`], res))

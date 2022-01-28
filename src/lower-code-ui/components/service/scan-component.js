@@ -1,7 +1,26 @@
 let _com = undefined
+let _dict = undefined
 export default class ScanComponent {
   constructor() {
 
+  }
+
+  getComponentByType(type) {
+    // 如果初始化过了，则返回之前的数据
+    if (_dict) {
+      return _dict[type]
+    }
+    _dict = {}
+    let components = this.getComponents()
+    components.map(item => {
+      _dict[item.type] = item
+    })
+    let component = _dict[type]
+    if (component) {
+      return component
+    } else {
+      console.error("没有注册 " + type + "组件")
+    }
   }
 
   getComponents() {
@@ -18,14 +37,20 @@ export default class ScanComponent {
       let name = component.name
       //判断是否有名称
       if (!name) {
-        console.error("加载" + fileName + "没有找到name 属性")
+        console.error("加载" + fileName + "没有找到 【name】 属性")
         console.error(component)
         continue
       }
       //判断是否有路径
       let path = component.path
       if (!component.path) {
-        console.error("加载" + fileName + "没有找到path 属性")
+        console.error("加载" + fileName + "没有找到 【path】 属性")
+        console.error(component)
+        continue
+      }      //判断是否有路径
+      let type = component.type
+      if (!component.type) {
+        console.error("加载" + fileName + "没有找到 【type】 属性")
         console.error(component)
         continue
       }

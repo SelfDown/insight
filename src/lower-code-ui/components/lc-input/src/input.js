@@ -1,13 +1,19 @@
 import {
   IInput
 } from "@/insight-ui"
-import component from "../../mixin/component";
+// import component from "../../mixin/component";
 
 export default {
   components: {
     IInput
   },
-  mixins: [component],
+  props:{
+    config:{}
+  },
+  mounted(){
+    console.log(this.config)
+  },
+  // mixins: [component],
   data() {
     return {
       dataValue: ""
