@@ -1,0 +1,20 @@
+[
+  {
+    "tag": "table",
+    "type": "component",
+    "name": "表格",
+    "component": "lc-table"
+  },
+   {
+    "tag": "form",
+    "type": "component",
+    "name": "表单",
+    "component": "lc-form"
+   },
+   {
+    "tag": "input",
+    "type": "component",
+    "name": "输入输入框",
+    "component": "lc-input"
+   }
+]

@@ -3,11 +3,14 @@ import ICollapseItem from './collapse/collapse-item'
 import IIcon from './icon'
 import IButton from './button'
 import ITree from './tree'
+import IForm from "./form"
+import IFormItem from "./form/form-item"
 import IDropdown from './dropdown'
 import IDropdownMenu from './dropdown/dropdown-menu'
 import IDropdownItem from './dropdown/dropdown-item'
 import LrLayout from './lr-layout'
 import ITable from './table'
+import ITableColumn from './table/col'
 import ICode from './code'
 import IMonaco from './monaco'
 import IFlow from './flow'
@@ -17,7 +20,6 @@ import ITabs from "./tabs"
 import ITabPane from "./tabs/tab-pane"
 import ITabsGroup from "./tabs-group"
 import ILine from "./line"
-import ILowerCode from "./lower-code"
 
 const components = {
   ITree,
@@ -30,6 +32,7 @@ const components = {
   IDropdownItem,
   LrLayout,
   ITable,
+  ITableColumn,
   ICode,
   IMonaco,
   IFlow,
@@ -39,7 +42,9 @@ const components = {
   ITabPane,
   ITabsGroup,
   ILine,
-  ILowerCode
+  IForm,
+  IFormItem
+
 
 }
 
@@ -54,6 +59,7 @@ export {
   IDropdownItem,
   LrLayout,
   ITable,
+  ITableColumn,
   ICode,
   IMonaco,
   IFlow,
@@ -63,9 +69,10 @@ export {
   ITabPane,
   ITabsGroup,
   ILine,
-  ILowerCode
-
+  IForm,
+  IFormItem
 }
 export default {
   ...components
 }
+

@@ -1,0 +1,24 @@
+.el-form-item__label{
+  font-size: 12px;
+}
+.el-form-item__label.is-error{
+  color: #F56C6C;
+  font-weight: bolder;
+}
+.el-form-item__content{
+  display: flex;
+}
+
+.el-form-item__error--inline {
+    word-break: keep-all;
+    white-space: nowrap;
+    line-height: 26px;
+  margin-left: 6px
+}
+.el-form-item--mini.el-form-item, .el-form-item--small.el-form-item {
+    margin-bottom: 2px;
+}
+
+.el-form--inline .el-form-item {
+     margin-right: 2px;
+}

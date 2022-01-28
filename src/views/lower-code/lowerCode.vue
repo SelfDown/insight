@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <span>低代码组件</span>
+    <span>组件</span>
     <i-lower-code
       :config="config"
     >

@@ -1,0 +1,118 @@
+{
+  "description": "页面",
+  "type": "page",
+  "children": [
+    {
+      "description": "左右布局",
+      "type": "lr-layout",
+      "children": [
+        {
+          "position": "left",
+          "description": "左侧面板内容",
+          "type": "panel",
+          "children": [
+            {
+              "description": "搜索用户表单",
+              "type": "form",
+              "props": {
+                "label-width": "80px",
+                "inline": true
+              },
+              "items": [
+                {
+                  "type": "input",
+                  "label": "用户名:",
+                  "name": "nick",
+                  "placeholder": "请输入用户名称"
+                },
+                {
+                  "type": "input",
+                  "label": "账号:",
+                  "name": "username",
+                  "placeholder": "请输入账号"
+                }
+              ]
+            },
+            {
+              "description": "用户列表",
+              "type": "table",
+              "props": {
+                "style": {
+                  "height": "200px"
+                },
+                "props": {
+                  "data": [
+                    {
+                      "nick": "张三"
+                    },
+                    {
+                      "nick": "李四"
+                    },
+                    {},
+                    {}
+                  ]
+                }
+              },
+              "columns": [
+                {
+                  "type": "selection",
+                  "label": ""
+                },
+                {
+                  "type": "index",
+                  "label": "#"
+                },
+                {
+                  "prop": "nick",
+                  "label": "用户名",
+                  "sortable": true,
+                  "width": "120px"
+                },
+                {
+                  "prop": "username",
+                  "label": "账号"
+                },
+                {
+                  "prop": "email",
+                  "label": "邮箱"
+                },
+                {
+                  "prop": "comments",
+                  "label": "备注"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "position": "right",
+          "description": "右侧面板内容",
+          "type": "panel",
+          "children": [
+            {
+              "description": "添加用户表单",
+              "type": "form",
+              "props": {
+                "label-width": "100px"
+              },
+              "items": [
+                {
+                  "type": "input",
+                  "label": "用户名",
+                  "name": "nick",
+                  "placeholder": "请输入用户名称"
+                },
+                {
+                  "type": "input",
+                  "label": "账号",
+                  "name": "username",
+                  "placeholder": "请输入账号"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
