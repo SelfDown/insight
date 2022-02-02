@@ -40,16 +40,10 @@ export default {
       <i-form {...{attrs: this.config.props}} >
         {
           items.map(item => {
+            let Tag = this.getComponentNameByType(item.type)
             return (
               <i-form-item {...{attrs: item}}>
-                {
-                  h(this.getComponentNameByType(item.type), {
-                      attrs: item,
-                      props: {
-                        config: item
-                      }
-                    })
-                }
+                <Tag {...{attrs: this.config.props,props:{config:item}}}></Tag>
               </i-form-item>
             )
           })
